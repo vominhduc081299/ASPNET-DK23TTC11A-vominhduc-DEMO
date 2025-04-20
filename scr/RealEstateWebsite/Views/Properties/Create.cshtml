@@ -1,0 +1,13 @@
+@model Property
+@{
+    ViewData["Title"] = "Đăng tin mới";
+}
+
+<h2>Đăng tin bất động sản</h2>
+
+<form asp-action="Create" method="post" class="mt-3" enctype="multipart/form-data">
+    <partial name="_Form" />
+    
+    <button type="submit" class="btn btn-success">Đăng tin</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

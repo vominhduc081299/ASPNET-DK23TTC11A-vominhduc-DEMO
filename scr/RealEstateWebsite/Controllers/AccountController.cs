@@ -1,8 +1,10 @@
-﻿// Controllers/AccountController.cs
+﻿namespace RealEstateWebsite.Controllers;
+
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RealEstateWebsite.Models;
+using RealEstateWebsite.Models.ViewModels;
 
 public class AccountController : Controller
 {
@@ -19,6 +21,7 @@ public class AccountController : Controller
     public IActionResult Register() => View();
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
         if (ModelState.IsValid)

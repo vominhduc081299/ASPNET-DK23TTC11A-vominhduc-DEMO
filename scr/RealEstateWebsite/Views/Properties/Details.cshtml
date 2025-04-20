@@ -1,0 +1,9 @@
+@model Property
+<h2>@Model.Title</h2>
+<p><strong>Giá:</strong> @Model.Price.ToString("N0") VND</p>
+<p><strong>Địa chỉ:</strong> @Model.Address</p>
+<p><strong>Loại hình:</strong> @Model.Type</p>
+<p><strong>Ngày đăng:</strong> @Model.PostedDate.ToShortDateString()</p>
+<p><strong>Mô tả:</strong> @Model.Description</p>
+
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>

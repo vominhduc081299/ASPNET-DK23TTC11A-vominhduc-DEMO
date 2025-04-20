@@ -1,0 +1,12 @@
+@model Property
+@{
+    ViewData["Title"] = "Chỉnh sửa tin đăng";
+}
+
+<h2>Chỉnh sửa tin</h2>
+<form asp-action="Edit" method="post" class="mt-3">
+    <input type="hidden" asp-for="Id" />
+    <partial name="_Form" />
+    <button type="submit" class="btn btn-warning">Lưu thay đổi</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

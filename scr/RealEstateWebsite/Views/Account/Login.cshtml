@@ -4,6 +4,15 @@
 }
 
 <h2 class="text-center mt-4">Đăng nhập</h2>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var e in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@e.ErrorMessage</div>
+        }
+    </div>
+}
 
 <form asp-action="Login" method="post" class="w-50 mx-auto mt-4">
     <div class="form-group mb-3">

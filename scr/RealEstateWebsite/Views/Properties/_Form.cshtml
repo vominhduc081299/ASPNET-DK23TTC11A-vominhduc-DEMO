@@ -1,0 +1,46 @@
+@model Property
+
+<div class="alert alert-info">
+    <strong>Chú ý:</strong> Vui lòng điền đầy đủ thông tin để tin đăng của bạn được duyệt nhanh chóng.
+</div>
+<div class="alert alert-warning">
+    <strong>Chú ý:</strong> Vui lòng không đăng tin giả mạo, không đúng sự thật. Chúng tôi sẽ xóa tin đăng của bạn nếu
+    phát hiện.
+</div>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var e in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@e.ErrorMessage</div>
+        }
+    </div>
+}
+
+<div class="form-group mb-3">
+    <label asp-for="Title"></label>
+    <input asp-for="Title" class="form-control" />
+    <span asp-validation-for="Title" class="text-danger"></span>
+</div>
+<div class="form-group mb-3">
+    <label asp-for="Price"></label>
+    <input asp-for="Price" class="form-control" />
+    <span asp-validation-for="Price" class="text-danger"></span>
+</div>
+<div class="form-group mb-3">
+    <label asp-for="Address"></label>
+    <input asp-for="Address" class="form-control" />
+</div>
+<div class="form-group mb-3">
+    <label asp-for="Type"></label>
+    <input asp-for="Type" class="form-control" />
+</div>
+<div class="form-group mb-3">
+    <label asp-for="Description"></label>
+    <textarea asp-for="Description" class="form-control"></textarea>
+</div>
+<div class="form-group mb-3">
+    <label for="ImageFiles">Chọn ảnh</label>
+    <input type="file" name="ImageFiles" multiple class="form-control" />
+</div>
