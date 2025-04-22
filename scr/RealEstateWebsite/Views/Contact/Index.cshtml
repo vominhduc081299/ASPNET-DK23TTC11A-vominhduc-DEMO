@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Liên hệ";
+}
+
+<div class="container mt-5 mb-5">
+    <h2 class="mb-4 text-primary">Liên hệ với chúng tôi</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">@ViewBag.Message</div>
+    }
+
+    <form asp-action="Contact" method="post" class="row g-3">
+        <div class="col-md-6">
+            <label for="Name" class="form-label">Họ và tên</label>
+            <input type="text" name="Name" class="form-control" required />
+        </div>
+
+        <div class="col-md-6">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" name="Email" class="form-control" required />
+        </div>
+
+        <div class="col-12">
+            <label for="Subject" class="form-label">Tiêu đề</label>
+            <input type="text" name="Subject" class="form-control" />
+        </div>
+
+        <div class="col-12">
+            <label for="Message" class="form-label">Nội dung</label>
+            <textarea name="Message" class="form-control" rows="5" required></textarea>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
+        </div>
+    </form>
+
+    <hr class="mt-5" />
+
+    <div class="mt-4">
+        <h5>Thông tin liên hệ</h5>
+        <ul class="list-unstyled">
+            <li><strong>📍 Địa chỉ:</strong> 123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh</li>
+            <li><strong>📞 Điện thoại:</strong> +84 912 345 678</li>
+            <li><strong>📧 Email:</strong> support@realestatewebsite.com</li>
+        </ul>
+    </div>
+
+    <div class="mt-4">
+        <h5>Bản đồ</h5>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.511511007801!2d106.655326875736!3d10.77208025927248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ec3c161a3fb%3A0xef77cd47a1cc691e!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBCw6FjaCBraG9hIC0gxJDhuqFpIGjhu41jIFF14buRYyBnaWEgVFAuSENN!5e0!3m2!1svi!2s!4v1745253715064!5m2!1svi!2s"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <p class="mt-3">Find us on the map above!</p>
+    </div>
+</div>

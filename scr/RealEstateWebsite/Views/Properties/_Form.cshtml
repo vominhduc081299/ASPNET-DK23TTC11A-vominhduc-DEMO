@@ -1,11 +1,11 @@
 @model Property
 
 <div class="alert alert-info">
-    <strong>Chú ý:</strong> Vui lòng điền đầy đủ thông tin để tin đăng của bạn được duyệt nhanh chóng.
+    <strong>Note:</strong> Note: Please fill in all information so that your post will be approved quickly.
 </div>
 <div class="alert alert-warning">
-    <strong>Chú ý:</strong> Vui lòng không đăng tin giả mạo, không đúng sự thật. Chúng tôi sẽ xóa tin đăng của bạn nếu
-    phát hiện.
+    <strong>Note:</strong> Please do not post fake or misleading information. We will delete your post if
+    detected. Please ensure that all information is accurate to avoid any issues.
 </div>
 
 @if (!ViewData.ModelState.IsValid)
@@ -33,8 +33,14 @@
     <input asp-for="Address" class="form-control" />
 </div>
 <div class="form-group mb-3">
-    <label asp-for="Type"></label>
-    <input asp-for="Type" class="form-control" />
+    <label asp-for="Type">Property Type</label>
+    <select asp-for="Type" class="form-select">
+        <option value="">All Types</option>
+        <option value="House">House</option>
+        <option value="Apartment">Apartment</option>
+        <option value="Villa">Villa</option>
+        <option value="Commercial">Commercial</option>
+    </select>
 </div>
 <div class="form-group mb-3">
     <label asp-for="Description"></label>

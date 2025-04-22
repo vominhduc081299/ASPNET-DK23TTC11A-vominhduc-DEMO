@@ -7,6 +7,24 @@
 <form asp-action="Edit" method="post" class="mt-3">
     <input type="hidden" asp-for="Id" />
     <partial name="_Form" />
+    <div class="mb-3">
+        <label>Ảnh hiện tại:</label>
+        <div class="d-flex flex-wrap gap-2">
+            @if (Model.Images != null && Model.Images.Any())
+            {
+                foreach (var img in Model.Images)
+                {
+                    <div>
+                        <img src="@img.ImagePath" width="100" class="img-thumbnail" />
+                    </div>
+                }
+            }
+            else
+            {
+                <span>Không có ảnh</span>
+            }
+        </div>
+    </div>
     <button type="submit" class="btn btn-warning">Lưu thay đổi</button>
     <a asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>

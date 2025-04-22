@@ -83,23 +83,22 @@ public class PropertiesController : Controller
     }
 
     // GET: Edit
-    // public async Task<IActionResult> Edit(int id)
-    // {
-    //     // Fetch property by id
-    //     var property = await GetPropertyByIdAsync(id);
-    //     if (property == null)
-    //     {
-    //         _logger.LogWarning($"Property with ID {id} not found.");
-    //         return NotFound();
-    //     }
+    public async Task<IActionResult> Edit(int id)
+    {
+        var property = await _context.Properties
+            .Include(p => p.Images)
+            .FirstOrDefaultAsync(p => p.Id == id);
 
-    //     return View(property);
-    // }
+        if (property == null)
+            return NotFound();
+
+        return View(property);
+    }
 
     // POST: Edit
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, Property property)
+    public async Task<IActionResult> Edit(int id, Property property, List<IFormFile> NewImages)
     {
         if (id != property.Id)
         {
@@ -115,17 +114,54 @@ public class PropertiesController : Controller
 
         try
         {
-            _context.Update(property); // Update the property in the database
+            // Update property details
+            _context.Update(property);
             await _context.SaveChangesAsync();
 
-            _logger.LogInformation($"Property with ID {id} updated successfully.");
+            // process new images
+            if (NewImages != null && NewImages.Count > 0)
+            {
+                foreach (var file in NewImages)
+                {
+                    if (file.Length > 0)
+                    {
+                        var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+
+                        var image = new PropertyImage
+                        {
+                            PropertyId = property.Id,
+                            ImagePath = "/images/" + fileName
+                        };
+
+                        _context.PropertyImages.Add(image);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error occurred while updating property with ID {id}.");
+            _logger.LogError(ex, $"Lỗi khi sửa bài đăng ID {id}");
             return View(property);
         }
+    }
+
+    // GET: Details
+    public async Task<IActionResult> Details(int id)
+    {
+        var property = await _context.Properties
+            .Include(p => p.Images)
+            .FirstOrDefaultAsync(p => p.Id == id);
+        return property == null ? NotFound() : View(property);
     }
 
     // GET: Delete
@@ -141,33 +177,46 @@ public class PropertiesController : Controller
         return View(property);
     }
 
-    // POST: Delete
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         try
         {
-            // Add property deletion logic here
-            Console.WriteLine($"Deleting property with ID: {id}");
-            // Console.WriteLine($"Property: {System.Text.Json.JsonSerializer.Serialize(property)}");
-            var property = await GetPropertyByIdAsync(id);
+            var property = await _context.Properties
+                .Include(p => p.Images)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             if (property == null)
             {
-                _logger.LogWarning($"Property with ID {id} not found.");
+                _logger.LogWarning($"Không tìm thấy Property ID: {id}");
                 return NotFound();
             }
+
+            foreach (var image in property.Images)
+            {
+                var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", image.ImagePath.TrimStart('/'));
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+            _context.PropertyImages.RemoveRange(property.Images);
+
             _context.Properties.Remove(property);
+
             await _context.SaveChangesAsync();
-            _logger.LogInformation($"Property with ID {id} deleted successfully.");
+
+            _logger.LogInformation($"Đã xoá Property + ảnh kèm theo (ID: {id})");
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error occurred while deleting property with ID {id}.");
+            _logger.LogError(ex, $"Lỗi khi xoá Property ID: {id}");
             return RedirectToAction(nameof(Delete), new { id });
         }
     }
+
 
     private async Task<Property?> GetPropertyByIdAsync(int id)
     {

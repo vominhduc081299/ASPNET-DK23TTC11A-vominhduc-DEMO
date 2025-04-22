@@ -1,9 +1,27 @@
 @model Property
 <h2>@Model.Title</h2>
-<p><strong>Giá:</strong> @Model.Price.ToString("N0") VND</p>
-<p><strong>Địa chỉ:</strong> @Model.Address</p>
-<p><strong>Loại hình:</strong> @Model.Type</p>
-<p><strong>Ngày đăng:</strong> @Model.PostedDate.ToShortDateString()</p>
-<p><strong>Mô tả:</strong> @Model.Description</p>
+<p><strong>Price : </strong> @Model.Price.ToString("N0") VND</p>
+<p><strong>Address:</strong> @Model.Address</p>
+<p><strong>Type:</strong> @Model.Type</p>
+<p><strong>Posted Date:</strong> @Model.PostedDate.ToShortDateString()</p>
+<p><strong>Description:</strong> @Model.Description</p>
+<div class="mb-3">
+        <label>Current Images:</label>
+        <div class="d-flex flex-wrap gap-2">
+            @if (Model.Images != null && Model.Images.Any())
+            {
+                foreach (var img in Model.Images)
+                {
+                    <div>
+                        <img src="@img.ImagePath" width="100" class="img-thumbnail" />
+                    </div>
+                }
+            }
+            else
+            {
+                <span>No images available</span>
+            }
+        </div>
+    </div>
 
-<a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+<a asp-action="Index" class="btn btn-secondary">Back</a>

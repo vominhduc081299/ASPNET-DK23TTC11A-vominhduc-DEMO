@@ -2,3 +2,403 @@
     ViewData["Title"] = "Home Page";
 }
 
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Find Your Dream Home</h1>
+            <p>Discover the perfect property that fits your lifestyle and budget</p>
+            
+            <div class="search-box">
+                <div class="search-tabs">
+                    <button class="tab active">Buy</button>
+                    <button class="tab">Rent</button>
+                    <button class="tab">Sell</button>
+                </div>
+                <div class="search-form">
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" placeholder="City, Address, Zip">
+                    </div>
+                    <div class="form-group">
+                        <label>Property Type</label>
+                        <select>
+                            <option>All Types</option>
+                            <option>House</option>
+                            <option>Apartment</option>
+                            <option>Villa</option>
+                            <option>Commercial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price Range</label>
+                        <select>
+                            <option>Any Price</option>
+                            <option>$100k - $200k</option>
+                            <option>$200k - $500k</option>
+                            <option>$500k - $1M</option>
+                            <option>$1M+</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary search-btn">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3>200+</h3>
+                    <p>Premium Products</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10k+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item">
+                    <h3>92%</h3>
+                    <p>Customer Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Properties Section -->
+<section class="featured-properties">
+    <div class="container">
+        <div class="section-header">
+            <h2>Featured Properties</h2>
+            <p>Explore our handpicked selection of premium properties</p>
+        </div>
+        
+        <div class="properties-grid">
+            <!-- Property Card 1 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="/images/placeholder.svg?height=250&width=400" alt="Luxury Villa">
+                    <span class="property-tag">For Sale</span>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-details">
+                    <div class="price">$1,250,000</div>
+                    <h3>Luxury Villa with Pool</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> 123 Palm Avenue, Beverly Hills</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 5 Beds</span>
+                        <span><i class="fas fa-bath"></i> 4 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 3,500 sqft</span>
+                    </div>
+                    <div class="property-footer">
+                        <div class="agent">
+                            <img src="/images/placeholder.svg?height=40&width=40" alt="Agent">
+                            <span>John Smith</span>
+                        </div>
+                        <div class="property-date">2 days ago</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Property Card 2 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="/images/placeholder.svg?height=250&width=400" alt="Modern Apartment">
+                    <span class="property-tag">For Rent</span>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-details">
+                    <div class="price">$3,500/mo</div>
+                    <h3>Modern Downtown Apartment</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> 456 Urban St, Downtown</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 2 Beds</span>
+                        <span><i class="fas fa-bath"></i> 2 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 1,200 sqft</span>
+                    </div>
+                    <div class="property-footer">
+                        <div class="agent">
+                            <img src="/images/placeholder.svg?height=40&width=40" alt="Agent">
+                            <span>Sarah Johnson</span>
+                        </div>
+                        <div class="property-date">1 week ago</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Property Card 3 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="/images/placeholder.svg?height=250&width=400" alt="Family Home">
+                    <span class="property-tag">For Sale</span>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-details">
+                    <div class="price">$750,000</div>
+                    <h3>Spacious Family Home</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> 789 Maple Dr, Suburbia</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 4 Beds</span>
+                        <span><i class="fas fa-bath"></i> 3 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 2,800 sqft</span>
+                    </div>
+                    <div class="property-footer">
+                        <div class="agent">
+                            <img src="/images/placeholder.svg?height=40&width=40" alt="Agent">
+                            <span>Michael Brown</span>
+                        </div>
+                        <div class="property-date">3 days ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="view-all">
+            <a href="#" class="btn btn-outline-primary">View All Properties <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Property Categories Section -->
+<section class="property-categories">
+    <div class="container">
+        <div class="section-header">
+            <h2>Browse By Property Type</h2>
+            <p>Find your perfect property based on your preferences</p>
+        </div>
+        
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Houses</h3>
+                <p>124 Properties</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Apartments</h3>
+                <p>87 Properties</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <h3>Commercial</h3>
+                <p>42 Properties</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-hotel"></i>
+                </div>
+                <h3>Villas</h3>
+                <p>65 Properties</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <p>Simple steps to find your dream property</p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="step-number">01</div>
+                <h3>Search Properties</h3>
+                <p>Browse our extensive catalog of properties based on your preferences.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="step-number">02</div>
+                <h3>Visit Properties</h3>
+                <p>Schedule viewings of your favorite properties at your convenience.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="step-number">03</div>
+                <h3>Close the Deal</h3>
+                <p>Our agents will help you finalize the purchase or rental agreement.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Agents Section -->
+<section class="featured-agents">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Featured Agents</h2>
+            <p>Meet our professional team of real estate experts</p>
+        </div>
+        
+        <div class="agents-grid">
+            <div class="agent-card">
+                <div class="agent-image">
+                    <img src="/images/placeholder.svg?height=300&width=250" alt="Agent">
+                </div>
+                <div class="agent-details">
+                    <h3>John Smith</h3>
+                    <p class="agent-title">Senior Agent</p>
+                    <div class="agent-stats">
+                        <div class="stat">
+                            <span class="stat-value">150+</span>
+                            <span class="stat-label">Properties</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">100+</span>
+                            <span class="stat-label">Clients</span>
+                        </div>
+                    </div>
+                    <div class="agent-contact">
+                        <a href="#" class="btn btn-outline-primary">Contact</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="agent-card">
+                <div class="agent-image">
+                    <img src="/images/placeholder.svg?height=300&width=250" alt="Agent">
+                </div>
+                <div class="agent-details">
+                    <h3>Sarah Johnson</h3>
+                    <p class="agent-title">Luxury Specialist</p>
+                    <div class="agent-stats">
+                        <div class="stat">
+                            <span class="stat-value">120+</span>
+                            <span class="stat-label">Properties</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">85+</span>
+                            <span class="stat-label">Clients</span>
+                        </div>
+                    </div>
+                    <div class="agent-contact">
+                        <a href="#" class="btn btn-outline-primary">Contact</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="agent-card">
+                <div class="agent-image">
+                    <img src="/images/placeholder.svg?height=300&width=250" alt="Agent">
+                </div>
+                <div class="agent-details">
+                    <h3>Michael Brown</h3>
+                    <p class="agent-title">Commercial Expert</p>
+                    <div class="agent-stats">
+                        <div class="stat">
+                            <span class="stat-value">90+</span>
+                            <span class="stat-label">Properties</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">70+</span>
+                            <span class="stat-label">Clients</span>
+                        </div>
+                    </div>
+                    <div class="agent-contact">
+                        <a href="#" class="btn btn-outline-primary">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <h2>What Our Clients Say</h2>
+            <p>Hear from our satisfied customers</p>
+        </div>
+        
+        <div class="testimonials-slider">
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>HomeLand helped me find my dream home in just two weeks! The agents were professional and understood exactly what I was looking for.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-author">
+                    <img src="/images/placeholder.svg?height=60&width=60" alt="Client">
+                    <div class="author-info">
+                        <h4>Emily Wilson</h4>
+                        <p>Homeowner</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>The team at HomeLand made selling my property a breeze. They handled everything professionally and got me a great price!</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-author">
+                    <img src="/images/placeholder.svg?height=60&width=60" alt="Client">
+                    <div class="author-info">
+                        <h4>Robert Davis</h4>
+                        <p>Property Seller</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Find Your Dream Home?</h2>
+            <p>Join thousands of satisfied customers who found their perfect property with HomeLand</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Get Started</a>
+                <a href="#" class="btn btn-outline-light">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
