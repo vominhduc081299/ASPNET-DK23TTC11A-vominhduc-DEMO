@@ -1,0 +1,540 @@
+@model RealEstateWebsite.Models.Property
+@section Styles {
+    <link rel="stylesheet" href="/css/property-details.css">
+}
+
+<!-- Property Gallery Section -->
+<section class="property-gallery">
+    <div class="container">
+        <div class="gallery-container">
+            <div class="main-image">
+                @if (Model.Images.Any())
+                {
+                    <img src="@Model.Images.First().ImagePath" alt="Luxury Villa Main Image">
+                }
+                else
+                {
+                    <img src="/images/systems/placeholder.svg?height=500&width=800" alt="Luxury Villa Main Image">
+                }
+                <span class="property-tag">For Sale</span>
+                <div class="gallery-actions">
+                    <button class="gallery-action"><i class="fas fa-share-alt"></i></button>
+                    <button class="gallery-action"><i class="far fa-heart"></i></button>
+                    <button class="gallery-action"><i class="fas fa-print"></i></button>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                @if (!Model.Images.Any())
+                {
+                    <div class="thumbnail active">
+                        <img src="/images/systems/placeholder.svg?height=100&width=150" alt="Thumbnail 1">
+                    </div>
+                }
+                @if (Model.Images.Any() && Model.Images.Count < 4)
+                {
+                    @foreach (var image in Model.Images)
+                    {
+                        <div class="thumbnail active">
+                            <img src="@image.ImagePath" alt="Thumbnail @image.Id">
+                        </div>
+                    }
+                }
+                @if (Model.Images.Count > 4)
+                {
+                    <div class="thumbnail more-photos">
+                    <img src="/images/systems/placeholder.svg?height=100&width=150" alt="Thumbnail 5">
+                        <div class="more-overlay">
+                            <span>+12</span>
+                            <span>Photos</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Property Details Section -->
+<section class="property-details-section">
+    <div class="container">
+        <div class="property-details-grid">
+            <!-- Left Column - Property Information -->
+            <div class="property-info">
+                <div class="property-header">
+                    <div class="property-title">
+                        <h1>@Model.Title</h1>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> @Model.Address</p>
+                    </div>
+                    <div class="property-price">
+                        <h2>@Model.Price.ToString("N0") VND</h2>
+                        <span class="price-per-sqft">$357/sq ft</span>
+                    </div>
+                </div>
+
+                <div class="property-highlights">
+                    <div class="highlight">
+                        <i class="fas fa-bed"></i>
+                        <div class="highlight-details">
+                            <span class="highlight-value">5</span>
+                            <span class="highlight-label">Bedrooms</span>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <i class="fas fa-bath"></i>
+                        <div class="highlight-details">
+                            <span class="highlight-value">4</span>
+                            <span class="highlight-label">Bathrooms</span>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <i class="fas fa-car"></i>
+                        <div class="highlight-details">
+                            <span class="highlight-value">2</span>
+                            <span class="highlight-label">Garage</span>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <i class="fas fa-ruler-combined"></i>
+                        <div class="highlight-details">
+                            <span class="highlight-value">3,500</span>
+                            <span class="highlight-label">Sq Ft</span>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div class="highlight-details">
+                            <span class="highlight-value">2018</span>
+                            <span class="highlight-label">Year Built</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-description">
+                    <h3>Description</h3>
+                    <p>This stunning luxury villa offers the perfect blend of elegance and comfort in one of the most
+                        prestigious neighborhoods in Beverly Hills. Nestled on a quiet, tree-lined street, this property
+                        provides privacy while being just minutes away from world-class shopping, dining, and
+                        entertainment.</p>
+                    <p>The open-concept main floor features high ceilings, abundant natural light, and seamless
+                        indoor-outdoor living with sliding glass doors that open to the backyard oasis. The gourmet
+                        kitchen is equipped with top-of-the-line appliances, custom cabinetry, and a large center island
+                        perfect for entertaining.</p>
+                    <p>Upstairs, the spacious primary suite includes a sitting area, walk-in closet, and a spa-like
+                        bathroom with dual vanities, a soaking tub, and a glass-enclosed shower. Four additional
+                        bedrooms provide ample space for family and guests.</p>
+                    <p>The meticulously landscaped backyard features a sparkling pool and spa, outdoor kitchen, and
+                        covered patio area, creating the perfect setting for relaxation and entertainment.</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+
+                <div class="property-features">
+                    <h3>Property Features</h3>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Air Conditioning</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Central Heating</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Swimming Pool</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Garden</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Security System</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Fire Alarm</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Outdoor Kitchen</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Home Theater</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Wine Cellar</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Gym</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Smart Home System</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Laundry Room</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="floor-plans">
+                    <h3>Floor Plans</h3>
+                    <div class="floor-plan-tabs">
+                        <button class="floor-tab active" data-floor="first">First Floor</button>
+                        <button class="floor-tab" data-floor="second">Second Floor</button>
+                        <button class="floor-tab" data-floor="basement">Basement</button>
+                    </div>
+                    <div class="floor-plan-content active" id="first-floor">
+                        <img src="/images/systems/placeholder.svg?height=400&width=800" alt="First Floor Plan">
+                        <div class="floor-details">
+                            <div class="floor-info">
+                                <h4>First Floor</h4>
+                                <p>1,500 sq ft</p>
+                            </div>
+                            <div class="floor-rooms">
+                                <div class="room-item">
+                                    <span class="room-name">Living Room</span>
+                                    <span class="room-size">400 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Kitchen</span>
+                                    <span class="room-size">300 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Dining Room</span>
+                                    <span class="room-size">250 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Office</span>
+                                    <span class="room-size">200 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Bathroom</span>
+                                    <span class="room-size">100 sq ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floor-plan-content" id="second-floor">
+                        <img src="/images/systems/placeholder.svg?height=400&width=800" alt="Second Floor Plan">
+                        <div class="floor-details">
+                            <div class="floor-info">
+                                <h4>Second Floor</h4>
+                                <p>1,400 sq ft</p>
+                            </div>
+                            <div class="floor-rooms">
+                                <div class="room-item">
+                                    <span class="room-name">Master Bedroom</span>
+                                    <span class="room-size">500 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Bedroom 2</span>
+                                    <span class="room-size">250 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Bedroom 3</span>
+                                    <span class="room-size">250 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Master Bathroom</span>
+                                    <span class="room-size">150 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Bathroom 2</span>
+                                    <span class="room-size">100 sq ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floor-plan-content" id="basement">
+                        <img src="/images/systems/placeholder.svg?height=400&width=800" alt="Basement Floor Plan">
+                        <div class="floor-details">
+                            <div class="floor-info">
+                                <h4>Basement</h4>
+                                <p>600 sq ft</p>
+                            </div>
+                            <div class="floor-rooms">
+                                <div class="room-item">
+                                    <span class="room-name">Home Theater</span>
+                                    <span class="room-size">300 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Wine Cellar</span>
+                                    <span class="room-size">150 sq ft</span>
+                                </div>
+                                <div class="room-item">
+                                    <span class="room-name">Storage</span>
+                                    <span class="room-size">150 sq ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-video">
+                    <h3>Video Tour</h3>
+                    <div class="video-container">
+                        <img src="/images/systems/placeholder.svg?height=400&width=800" alt="Video Thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-location">
+                    <h3>Location</h3>
+                    <div class="map-container">
+                        <img src="/images/systems/placeholder.svg?height=400&width=800" alt="Property Location Map">
+                    </div>
+                    <div class="location-details">
+                        <h4>Neighborhood Information</h4>
+                        <div class="nearby-places">
+                            <div class="nearby-category">
+                                <h5><i class="fas fa-graduation-cap"></i> Education</h5>
+                                <ul>
+                                    <li>
+                                        <span class="place-name">Beverly Hills High School</span>
+                                        <span class="place-distance">0.8 miles</span>
+                                    </li>
+                                    <li>
+                                        <span class="place-name">Beverly Vista Elementary</span>
+                                        <span class="place-distance">0.5 miles</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="nearby-category">
+                                <h5><i class="fas fa-shopping-cart"></i> Shopping</h5>
+                                <ul>
+                                    <li>
+                                        <span class="place-name">Rodeo Drive</span>
+                                        <span class="place-distance">1.2 miles</span>
+                                    </li>
+                                    <li>
+                                        <span class="place-name">Beverly Center</span>
+                                        <span class="place-distance">2.5 miles</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="nearby-category">
+                                <h5><i class="fas fa-utensils"></i> Dining</h5>
+                                <ul>
+                                    <li>
+                                        <span class="place-name">Spago Beverly Hills</span>
+                                        <span class="place-distance">1.0 miles</span>
+                                    </li>
+                                    <li>
+                                        <span class="place-name">The Ivy</span>
+                                        <span class="place-distance">1.5 miles</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="nearby-category">
+                                <h5><i class="fas fa-bus"></i> Transportation</h5>
+                                <ul>
+                                    <li>
+                                        <span class="place-name">Beverly Hills Transit Center</span>
+                                        <span class="place-distance">1.3 miles</span>
+                                    </li>
+                                    <li>
+                                        <span class="place-name">LAX Airport</span>
+                                        <span class="place-distance">15 miles</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Right Column - Sidebar -->
+            <div class="property-sidebar">
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <img src="/images/systems/placeholder.svg?height=100&width=100" alt="Agent John Smith">
+                        <div class="agent-info">
+                            <h3>John Smith</h3>
+                            <p>Senior Real Estate Agent</p>
+                            <div class="agent-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(42 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(123) 456-7890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>john.smith@homeland.com</span>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <h4>Contact Agent</h4>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <textarea
+                                placeholder="I'm interested in this property. Please contact me with more information."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                    </form>
+                    <div class="agent-actions">
+                        <a href="#" class="btn btn-outline-primary btn-block">View Agent Profile</a>
+                    </div>
+                </div>
+
+                <div class="property-share">
+                    <h3>Share This Property</h3>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="share-btn twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="share-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mortgage-calculator">
+            <h3>Mortgage Calculator</h3>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label>Home Price</label>
+                    <input type="text" value="$1,250,000" id="home-price">
+                </div>
+                <div class="form-group">
+                    <label>Down Payment (20%)</label>
+                    <input type="text" value="$250,000" id="down-payment">
+                </div>
+                <div class="form-group">
+                    <label>Loan Term</label>
+                    <select id="loan-term">
+                        <option value="30">30 Years</option>
+                        <option value="20">20 Years</option>
+                        <option value="15">15 Years</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Interest Rate</label>
+                    <input type="text" value="4.5%" id="interest-rate">
+                </div>
+                <button type="button" class="btn btn-primary btn-block">Calculate</button>
+            </div>
+            <div class="calculator-result">
+                <div class="result-item">
+                    <span class="result-label">Monthly Payment</span>
+                    <span class="result-value">$5,067</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<!-- Similar Properties Section -->
+<section class="similar-properties">
+    <div class="container">
+        <div class="section-header">
+            <h2>Similar Properties</h2>
+            <p>You might also be interested in these properties</p>
+        </div>
+
+        <div class="properties-grid">
+            <!-- Property Card 1 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="/images/systems/placeholder.svg?height=250&width=400" alt="Modern Villa">
+                    <span class="property-tag">For Sale</span>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-details">
+                    <div class="price">$1,450,000</div>
+                    <h3>Modern Villa with Ocean View</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> 456 Ocean Drive, Malibu</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 4 Beds</span>
+                        <span><i class="fas fa-bath"></i> 3 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 3,200 sqft</span>
+                    </div>
+                    <div class="property-footer">
+                        <div class="agent">
+                            <img src="/images/systems/placeholder.svg?height=40&width=40" alt="Agent">
+                            <span>Sarah Johnson</span>
+                        </div>
+                        <div class="property-date">1 week ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Card 2 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="/images/systems/placeholder.svg?height=250&width=400" alt="Luxury Mansion">
+                    <span class="property-tag">For Sale</span>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-details">
+                    <div class="price">$2,100,000</div>
+                    <h3>Luxury Mansion with Tennis Court</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> 789 Estate Blvd, Bel Air</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 6 Beds</span>
+                        <span><i class="fas fa-bath"></i> 5 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 5,800 sqft</span>
+                    </div>
+                    <div class="property-footer">
+                        <div class="agent">
+                            <img src="/images/systems/placeholder.svg?height=40&width=40" alt="Agent">
+                            <span>Michael Brown</span>
+                        </div>
+                        <div class="property-date">3 days ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Card 3 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="/images/systems/placeholder.svg?height=250&width=400" alt="Contemporary Home">
+                    <span class="property-tag">For Sale</span>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-details">
+                    <div class="price">$980,000</div>
+                    <h3>Contemporary Home with Garden</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> 321 Maple St, Sherman Oaks</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 4 Beds</span>
+                        <span><i class="fas fa-bath"></i> 3 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 2,900 sqft</span>
+                    </div>
+                    <div class="property-footer">
+                        <div class="agent">
+                            <img src="/images/systems/placeholder.svg?height=40&width=40" alt="Agent">
+                            <span>John Smith</span>
+                        </div>
+                        <div class="property-date">5 days ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

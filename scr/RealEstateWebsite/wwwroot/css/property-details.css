@@ -489,6 +489,7 @@
 }
 
 /* Property Sidebar Styles */
+.mortgage-calculator,
 .property-sidebar > div {
     background-color: white;
     border-radius: 10px;

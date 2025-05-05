@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    @RenderSection("Styles", required: false)
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -24,7 +25,7 @@
             </div>
             <nav class="navbar navbar-expand-lg navbar-light px-4">
                 <ul class="menu">
-                    <li><a href="#">Properties</a></li>
+                    <li><a asp-controller="Properties" asp-action="PropertyList">Properties</a></li>
                     <li><a href="#">Agents</a></li>
                     <li><a href="/Blog">Blog</a></li>
                     <li><a href="/Contact">Contact</a></li>
@@ -41,7 +42,8 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" asp-controller="Properties" asp-action="Create">New Post</a></li>
                             <li><a class="dropdown-item" asp-controller="Properties" asp-action="Index">My Posts</a></li>
-                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Manage">Manage Account</a></li>
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Manage">Manage Account</a>
+                            </li>
                             <li><a class="dropdown-item" asp-controller="Account" asp-action="ChangePassword">Change
                                     Password</a></li>
                             <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">Profile</a></li>

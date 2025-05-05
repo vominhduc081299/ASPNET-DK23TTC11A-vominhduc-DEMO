@@ -8,17 +8,82 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RealEstateWebsite.Data;
 using RealEstateWebsite.Models;
+using Microsoft.AspNetCore.Identity;
 
 [Authorize]
 public class PropertiesController : Controller
 {
     private readonly ILogger<PropertiesController> _logger;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public PropertiesController(ILogger<PropertiesController> logger, ApplicationDbContext context)
+    public PropertiesController(ILogger<PropertiesController> logger, ApplicationDbContext context, UserManager<ApplicationUser> userManager)
     {
         _context = context;
         _logger = logger;
+        _userManager = userManager;
+    }
+
+    // GET: PropertyList
+    [AllowAnonymous]
+    public async Task<IActionResult> PropertyList(string searchString, string propertyType, decimal? minPrice, decimal? maxPrice)
+    {
+        var propertiesQuery = _context.Properties.AsQueryable();
+        // debug propertiesQuery
+        _logger.LogInformation($"searchString: {searchString}");
+        _logger.LogInformation($"propertyType: {propertyType}");
+        _logger.LogInformation($"minPrice: {minPrice}");
+        _logger.LogInformation($"maxPrice: {maxPrice}");
+
+
+        // Apply filters if provided
+        // if (!string.IsNullOrEmpty(searchString))
+        // {
+        //     propertiesQuery = propertiesQuery.Where(p => 
+        //         p.Title.Contains(searchString) || 
+        //         p.Description.Contains(searchString) ||
+        //         p.Address.Contains(searchString));
+        // }
+        
+        // if (!string.IsNullOrEmpty(propertyType))
+        // {
+        //     propertiesQuery = propertiesQuery.Where(p => p.PropertyType == propertyType);
+        // }
+        // 293636
+        // if (minPrice.HasValue)
+        // {
+        //     propertiesQuery = propertiesQuery.Where(p => p.Price >= minPrice.Value);
+        // }
+        
+        // if (maxPrice.HasValue)
+        // {
+        //     propertiesQuery = propertiesQuery.Where(p => p.Price <= maxPrice.Value);
+        // }
+        
+        int pageSize = 30;
+        int pageNumber = 2;
+        var properties = await propertiesQuery
+            .Include(p => p.Images)
+            // .Include(p => p.User)
+            // .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        _logger.LogInformation($"Retrieved {properties.Count} properties matching filter criteria");
+        return View(properties);
+    }
+
+    // GET: Propertydetails
+    [AllowAnonymous]
+    [Route("properties/PropertyDetails/{slug}")]
+    public async Task<IActionResult> PropertyDetails(string slug)
+    {
+        _logger.LogInformation($"slug: {slug}");
+        var property = await _context.Properties
+            .Include(p => p.Images)
+            .Include(p => p.User)
+            .FirstOrDefaultAsync(p => p.Slug == slug);
+        return property == null ? NotFound() : View(property);
     }
 
     // GET: Create
@@ -37,6 +102,9 @@ public class PropertiesController : Controller
 
         try
         {
+            // Gán người đăng
+            property.PostedBy = _userManager.GetUserId(User);
+            property.Slug = GenerateSlug(property.Title);
             _context.Add(property);
             await _context.SaveChangesAsync();
 
@@ -50,7 +118,7 @@ public class PropertiesController : Controller
                         var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                         var filePath = Path.Combine(
                             Directory.GetCurrentDirectory(),
-                            "wwwroot/images",
+                            "wwwroot/images/user",
                             fileName
                         );
 
@@ -62,7 +130,7 @@ public class PropertiesController : Controller
                         var image = new PropertyImage
                         {
                             PropertyId = property.Id,
-                            ImagePath = "/images/" + fileName,
+                            ImagePath = "/images/user/" + fileName,
                         };
 
                         _context.PropertyImages.Add(image);
@@ -114,6 +182,7 @@ public class PropertiesController : Controller
 
         try
         {
+            property.Slug = GenerateSlug(property.Title);
             // Update property details
             _context.Update(property);
             await _context.SaveChangesAsync();
@@ -126,7 +195,7 @@ public class PropertiesController : Controller
                     if (file.Length > 0)
                     {
                         var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/user", fileName);
 
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
@@ -136,7 +205,7 @@ public class PropertiesController : Controller
                         var image = new PropertyImage
                         {
                             PropertyId = property.Id,
-                            ImagePath = "/images/" + fileName
+                            ImagePath = "/images/user/" + fileName
                         };
 
                         _context.PropertyImages.Add(image);
@@ -226,7 +295,35 @@ public class PropertiesController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var properties = await _context.Properties.ToListAsync();
+        var properties = await _context.Properties.Include(p => p.User).ToListAsync();
         return View(properties);
+    }
+
+    private string GenerateSlug(string title)
+    {
+        // convert title to slug
+        var slug = title.ToLower()
+            .Replace(" ", "-")
+            .Replace("đ", "d")
+            .Replace("á", "a")
+            .Replace("à", "a")
+            .Replace("ạ", "a")
+            .Replace("ả", "a")
+            .Replace("ã", "a")
+            .Replace("é", "e")
+            .Replace("è", "e")
+            .Replace("ẹ", "e")
+            .Replace("ẻ", "e")
+            .Replace("ẽ", "e")
+            .Replace("ê", "e")
+            .Replace("'", "")
+            .Replace("\"", "")
+            .Replace(".", "")
+            .Replace(",", "")
+            .Replace("?", "")
+            .Replace("/", "")
+            .Replace("\\", "")
+            .Replace("&", "and");
+        return slug;
     }
 }

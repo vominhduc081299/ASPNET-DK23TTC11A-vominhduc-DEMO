@@ -1,0 +1,494 @@
+@section Styles {
+    <link rel="stylesheet" href="/css/properties-list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.css">
+}
+
+@model IEnumerable<RealEstateWebsite.Models.Property>
+
+<!-- Page Title Section -->
+<section class="page-title">
+    <div class="container">
+        <h1>Property Listings</h1>
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li>Properties</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content Section -->
+<section class="properties-section">
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search by location, property name or keyword...">
+            </div>
+            <button class="btn btn-primary">Search</button>
+        </div>
+
+        <div class="properties-content">
+            <!-- Filter Sidebar -->
+            <div class="filter-sidebar">
+                <div class="filter-header">
+                    <h3>Filter Properties</h3>
+                    <button class="filter-toggle-btn">
+                        <i class="fas fa-sliders-h"></i> Filters
+                    </button>
+                </div>
+
+                <div class="filter-body">
+                    <div class="filter-group">
+                        <h4>Property Status</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                For Sale
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                For Rent
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Property Type</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Houses
+                                <span class="count">(120)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Apartments
+                                <span class="count">(86)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Villas
+                                <span class="count">(46)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Commercial
+                                <span class="count">(32)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Land
+                                <span class="count">(25)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <div class="price-slider-container">
+                            <div id="price-slider"></div>
+                            <div class="price-inputs">
+                                <div class="price-input">
+                                    <label>Min</label>
+                                    <input type="text" id="price-min" value="$100,000">
+                                </div>
+                                <div class="price-input">
+                                    <label>Max</label>
+                                    <input type="text" id="price-max" value="$1,500,000">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Bedrooms</h4>
+                        <div class="number-select">
+                            <button class="number-btn active">Any</button>
+                            <button class="number-btn">1+</button>
+                            <button class="number-btn">2+</button>
+                            <button class="number-btn">3+</button>
+                            <button class="number-btn">4+</button>
+                            <button class="number-btn">5+</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Bathrooms</h4>
+                        <div class="number-select">
+                            <button class="number-btn active">Any</button>
+                            <button class="number-btn">1+</button>
+                            <button class="number-btn">2+</button>
+                            <button class="number-btn">3+</button>
+                            <button class="number-btn">4+</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Area (sq ft)</h4>
+                        <div class="area-inputs">
+                            <div class="area-input">
+                                <input type="text" placeholder="Min">
+                            </div>
+                            <span class="area-separator">-</span>
+                            <div class="area-input">
+                                <input type="text" placeholder="Max">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Features & Amenities</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Air Conditioning
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Swimming Pool
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Garden
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Garage
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Security System
+                            </label>
+                            <button class="show-more-btn">+ Show More</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button class="btn btn-primary btn-block">Apply Filters</button>
+                        <button class="btn btn-outline btn-block">Reset Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Properties List -->
+            <div class="properties-list">
+                <div class="list-header">
+                    <div class="results-count">
+                        <p>Showing <strong>1-30</strong> of <strong>@Model.Count()</strong> properties</p>
+                    </div>
+                    <div class="list-controls">
+                        <div class="sort-by">
+                            <label>Sort by:</label>
+                            <select>
+                                <option>Default</option>
+                                <option>Price (Low to High)</option>
+                                <option>Price (High to Low)</option>
+                                <option>Newest First</option>
+                                <option>Oldest First</option>
+                            </select>
+                        </div>
+                        <div class="view-switch">
+                            <button class="view-btn active" data-view="grid">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button class="view-btn" data-view="list">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="properties-grid">
+                    <!-- Property Cards (30 items) -->
+                    <!-- Property Card 1 -->
+                    <!-- <a href="/properties/PropertyDetails/1" class="property-card">
+                        <div class="property-image">
+                            <img src="/images/systems/placeholder.svg?height=250&width=400" alt="Luxury Villa">
+                            <span class="property-tag">For Sale</span>
+                            <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="property-details">
+                            <div class="price">$1,250,000</div>
+                            <h3>Luxury Villa with Pool</h3>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> 123 Palm Avenue, Beverly Hills</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 5 Beds</span>
+                                <span><i class="fas fa-bath"></i> 4 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 3,500 sqft</span>
+                            </div>
+                            <div class="property-footer">
+                                <div class="agent">
+                                    <img src="/images/systems/placeholder.svg?height=40&width=40" alt="Agent">
+                                    <span>John Smith</span>
+                                </div>
+                                <div class="property-date">2 days ago</div>
+                            </div>
+                        </div>
+                    </a> -->
+                    @if (Model == null || !Model.Any())
+                    {
+                        <div class="alert alert-warning">
+                            Không có bất động sản nào.
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <a href="/properties/PropertyDetails/@item.Slug" class="property-card">
+                                <div class="property-image">
+                                    @if (item.Images.Any())
+                                    {
+                                        <img src="@item.Images.First().ImagePath" alt="Luxury Villa">
+                                    }
+                                    else
+                                    {
+                                        <img src="/images/systems/placeholder.svg?height=250&width=400" alt="Luxury Villa">
+                                    }
+                                    <span class="property-tag">For Sale</span>
+                                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                                </div>
+                                <div class="property-details">
+                                    <div class="price">@item.Price.ToString("N0") VND</div>
+                                    <h3>@item.Title</h3>
+                                    <p class="location"><i class="fas fa-map-marker-alt"></i> @item.Address</p>
+                                    <div class="property-features">
+                                        <span><i class="fas fa-bed"></i> 5 Beds</span>
+                                        <span><i class="fas fa-bath"></i> 4 Baths</span>
+                                        <span><i class="fas fa-ruler-combined"></i> 3,500 sqft</span>
+                                    </div>
+                                    <div class="property-footer">
+                                        <div class="agent">
+                                            <img src="/images/systems/placeholder.svg?height=40&width=40" alt="Agent">
+                                            <span>John Smith</span>
+                                        </div>
+                                        <div class="property-date">2 days ago</div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    }
+
+                    <!-- Repeat similar structure for cards 10-30 -->
+                    <!-- For brevity, I'm showing just 9 cards here, but in a real implementation, you would have all 30 -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn prev-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">4</button>
+                    <button class="page-btn">5</button>
+                    <span class="page-ellipsis">...</span>
+                    <button class="page-btn">10</button>
+                    <button class="page-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get the latest property listings and real estate news directly to your inbox</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.js"></script>
+}
+<script>
+    // Mobile Menu Toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+        document.querySelector('.menu').classList.toggle('active');
+    });
+
+    // Filter Toggle for Mobile
+    document.querySelector('.filter-toggle-btn').addEventListener('click', function () {
+        document.querySelector('.filter-body').classList.toggle('active');
+    });
+
+    // View Switch (Grid/List)
+    const viewBtns = document.querySelectorAll('.view-btn');
+    const propertiesContainer = document.querySelector('.properties-grid');
+
+    viewBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            viewBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            const viewType = this.getAttribute('data-view');
+            propertiesContainer.className = viewType === 'grid' ? 'properties-grid' : 'properties-list';
+        });
+    });
+
+    // Number Buttons (Bedrooms/Bathrooms)
+    const numberBtns = document.querySelectorAll('.number-btn');
+
+    numberBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Find all buttons in the same group
+            const parentGroup = this.closest('.number-select');
+            const buttonsInGroup = parentGroup.querySelectorAll('.number-btn');
+
+            // Remove active class from all buttons in the group
+            buttonsInGroup.forEach(b => b.classList.remove('active'));
+
+            // Add active class to clicked button
+            this.classList.add('active');
+        });
+    });
+
+    // Price Range Slider
+    if (document.getElementById('price-slider')) {
+        const priceSlider = document.getElementById('price-slider');
+        const priceMin = document.getElementById('price-min');
+        const priceMax = document.getElementById('price-max');
+
+        noUiSlider.create(priceSlider, {
+            start: [100000, 1500000],
+            connect: true,
+            step: 10000,
+            range: {
+                'min': 0,
+                'max': 3000000
+            },
+            format: {
+                to: function (value) {
+                    return '$' + parseInt(value).toLocaleString();
+                },
+                from: function (value) {
+                    return Number(value.replace(/[\$,]/g, ''));
+                }
+            }
+        });
+
+        priceSlider.noUiSlider.on('update', function (values, handle) {
+            if (handle === 0) {
+                priceMin.value = values[handle];
+            } else {
+                priceMax.value = values[handle];
+            }
+        });
+
+        // Update slider when inputs change
+        priceMin.addEventListener('change', function () {
+            priceSlider.noUiSlider.set([this.value, null]);
+        }); function () {
+            priceSlider.noUiSlider.set([this.value, null]);
+        });
+
+        priceMax.addEventListener('change', function () {
+            priceSlider.noUiSlider.set([null, this.value]);
+        });
+    }
+
+    // Show More Button for Features & Amenities
+    const showMoreBtn = document.querySelector('.show-more-btn');
+    if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', function () {
+            const hiddenOptions = document.querySelectorAll('.filter-options .hidden');
+            hiddenOptions.forEach(option => {
+                option.classList.remove('hidden');
+            });
+            this.style.display = 'none';
+        });
+    }
+
+    // Favorite Button Toggle
+    const favoriteBtns = document.querySelectorAll('.favorite-btn');
+    favoriteBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        });
+    });
+
+    // Pagination
+    const pageBtns = document.querySelectorAll('.page-btn:not(.prev-btn):not(.next-btn)');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    pageBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            pageBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            // Enable/disable prev/next buttons based on current page
+            const currentPage = parseInt(this.textContent);
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === 10; // Assuming 10 is the last page
+
+            // In a real implementation, you would fetch the properties for the selected page here
+            // and update the properties grid
+        });
+    });
+
+    prevBtn.addEventListener('click', function () {
+        const activePage = document.querySelector('.page-btn.active');
+        const currentPage = parseInt(activePage.textContent);
+        if (currentPage > 1) {
+            const prevPage = document.querySelector(`.page-btn:not(.prev-btn):not(.next-btn):nth-child(${currentPage})`);
+            if (prevPage) {
+                activePage.classList.remove('active');
+                prevPage.classList.add('active');
+
+                // Update button states
+                nextBtn.disabled = false;
+                prevBtn.disabled = currentPage - 1 === 1;
+            }
+        }
+    });
+
+    nextBtn.addEventListener('click', function () {
+        const activePage = document.querySelector('.page-btn.active');
+        const currentPage = parseInt(activePage.textContent);
+        if (currentPage < 10) { // Assuming 10 is the last page
+            const nextPage = document.querySelector(`.page-btn:not(.prev-btn):not(.next-btn):nth-child(${currentPage + 2})`);
+            if (nextPage) {
+                activePage.classList.remove('active');
+                nextPage.classList.add('active');
+
+                // Update button states
+                prevBtn.disabled = false;
+                nextBtn.disabled = currentPage + 1 === 10;
+            }
+        }
+    });
+</script>

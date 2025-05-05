@@ -1,0 +1,587 @@
+/* Properties List Page Specific Styles */
+
+/* Page Title Styles */
+.page-title {
+    background-color: #2563eb;
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.page-title h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.page-title .breadcrumb {
+    background: none;
+    padding: 0;
+    border: none;
+}
+
+.page-title .breadcrumb ul {
+    display: flex;
+    justify-content: center;
+}
+
+.page-title .breadcrumb li {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.page-title .breadcrumb li:not(:last-child)::after {
+    content: '/';
+    margin: 0 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.page-title .breadcrumb a {
+    color: white;
+}
+
+.page-title .breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Properties Section Styles */
+.properties-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.search-input {
+    flex: 1;
+    position: relative;
+}
+
+.search-input i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+}
+
+.search-input input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-bar .btn {
+    padding: 0 30px;
+}
+
+/* Properties Content Layout */
+.properties-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+
+/* Filter Sidebar Styles */
+.filter-sidebar {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    align-self: start;
+}
+
+.filter-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.filter-toggle-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.filter-toggle-btn i {
+    margin-right: 5px;
+}
+
+.filter-body {
+    padding: 20px;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-group h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.filter-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.filter-option:hover input~.checkmark {
+    background-color: #f9f9f9;
+}
+
+.filter-option input:checked~.checkmark {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.filter-option input:checked~.checkmark:after {
+    display: block;
+}
+
+.filter-option .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.count {
+    margin-left: 5px;
+    color: #777;
+}
+
+.price-slider-container {
+    padding: 10px 0;
+}
+
+.price-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.price-input {
+    width: 48%;
+}
+
+.price-input label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #777;
+}
+
+.price-input input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.number-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.number-btn {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.number-btn:hover {
+    background-color: #eee;
+}
+
+.number-btn.active {
+    background-color: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+.area-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.area-input {
+    flex: 1;
+}
+
+.area-input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.area-separator {
+    color: #777;
+}
+
+.show-more-btn {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px 0;
+    margin-top: 5px;
+}
+
+.show-more-btn:hover {
+    text-decoration: underline;
+}
+
+.filter-options .hidden {
+    display: none;
+}
+
+.filter-actions {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Properties List Styles */
+.properties-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.list-header {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.results-count {
+    font-size: 14px;
+    color: #777;
+}
+
+.results-count strong {
+    color: #333;
+}
+
+.list-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sort-by {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-by label {
+    font-size: 14px;
+    color: #777;
+}
+
+.sort-by select {
+    padding: 8px 30px 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    appearance: none;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+}
+
+.view-switch {
+    display: flex;
+    gap: 5px;
+}
+
+.view-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-btn:hover {
+    background-color: #f9f9f9;
+}
+
+.view-btn.active {
+    background-color: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+/* Properties Grid Styles */
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Properties List View Styles */
+.properties-list .property-card {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+}
+
+.properties-list .property-image {
+    width: 40%;
+    height: auto;
+}
+
+.properties-list .property-details {
+    width: 60%;
+}
+
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 30px;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.page-btn:hover:not(:disabled) {
+    background-color: #f9f9f9;
+}
+
+.page-btn.active {
+    background-color: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Newsletter Section Styles */
+.newsletter {
+    background-color: #f0f7ff;
+    padding: 60px 0;
+}
+
+.newsletter-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-content h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.newsletter-content p {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* noUiSlider Custom Styles */
+.noUi-connect {
+    background-color: #2563eb;
+}
+
+.noUi-handle {
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 0 0 1px #2563eb;
+    border: 3px solid #2563eb;
+}
+
+.noUi-handle:before,
+.noUi-handle:after {
+    display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .properties-content {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-toggle-btn {
+        display: flex;
+        align-items: center;
+    }
+
+    .filter-body {
+        display: none;
+    }
+
+    .filter-body.active {
+        display: block;
+    }
+
+    .properties-list .property-card {
+        flex-direction: column;
+    }
+
+    .properties-list .property-image,
+    .properties-list .property-details {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .list-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .list-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .page-btn:not(.active):not(.prev-btn):not(.next-btn) {
+        display: none;
+    }
+
+    .page-btn.active {
+        display: flex;
+    }
+
+    .page-ellipsis {
+        display: none;
+    }
+}

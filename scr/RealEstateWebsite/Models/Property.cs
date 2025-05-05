@@ -8,8 +8,11 @@ namespace RealEstateWebsite.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Tiêu Đề")]
+        [Display(Name = "Tiêu đề")]
         public string Title { get; set; }
+
+        [Display(Name = "Slug")]
+        public string? Slug { get; set; }
 
         [Required]
         [Display(Name = "Mô tả")]
@@ -28,6 +31,20 @@ namespace RealEstateWebsite.Models
 
         [Display(Name = "Ngày đăng")]
         public DateTime PostedDate { get; set; } = DateTime.Now;
+
+        [Display(Name = "Ngày cập nhật")]
+        public DateTime UpdatedDate { get; set; } = DateTime.Now;
+
+        [Required]
+        [Display(Name = "Trạng thái")]
+        public string? Status { get; set; } = "Pending";
+        // Accept, Pending, Rejected
+
+        [Display(Name = "Người đăng")]
+        public string? PostedBy { get; set; }
+
+        // Navigation (nếu cần dùng thêm sau)
+        public ApplicationUser? User { get; set; }
 
         public ICollection<PropertyImage> Images { get; set; } = new List<PropertyImage>();
     }
